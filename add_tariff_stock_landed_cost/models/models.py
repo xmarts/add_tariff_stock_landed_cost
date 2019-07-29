@@ -81,8 +81,8 @@ class InheritStockLandedCost(models.Model):
         for x in AdjustementLines.search([('cost_id', 'in', self.ids)]):
         	if x.cost_line_id.product_id.split_method == 'arancel':
         		print("Lines: ", x.product_id.name, x.cost_line_id.id)
-        		x.write({'additional_landed_cost': (x.product_id.list_price * (x.product_id.arancel_percent/100)) * x.quantity})
-        		x.cost_line_id.price_unit += (x.product_id.list_price * (x.product_id.arancel_percent/100)) * x.quantity
+        		x.write({'additional_landed_cost': (x.former_cost_per_unit * (x.product_id.arancel_percent/100)) * x.quantity})
+        		x.cost_line_id.price_unit += (x.former_cost_per_unit * (x.product_id.arancel_percent/100)) * x.quantity
 
         return True
 
